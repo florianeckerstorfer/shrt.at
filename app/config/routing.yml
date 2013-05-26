@@ -1,3 +1,7 @@
+fe_shrt_file:
+    resource: "@FeShrtFileBundle/Resources/config/routing.xml"
+    prefix:   /
+
 fe_shrt_url:
     resource: "@FeShrtUrlBundle/Resources/config/routing.xml"
     prefix:   /

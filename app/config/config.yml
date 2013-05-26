@@ -66,3 +66,26 @@ swiftmailer:
 
 fe_shrt:
     base_url: http://shrt.at.dev
+
+fe_shrt_file:
+    amazon_s3:
+        aws_key: %aws_key%
+        aws_secret_key: %aws_secret_key%
+        base_url: http://42.ly.s3-website-us-east-1.amazonaws.com
+
+knp_gaufrette:
+    adapters:
+        s3:
+            amazon_s3:
+                amazon_s3_id: fe_shrt_file.amazon_s3
+                bucket_name: 42.ly
+                create: false
+                options:
+                    create: true
+                    # region: 'US Standard'
+                    # directory:
+    filesystems:
+        s3:
+            adapter: s3
+            alias: s3_filesystem
+
