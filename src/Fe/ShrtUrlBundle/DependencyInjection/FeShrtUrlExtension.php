@@ -1,6 +1,6 @@
 <?php
 
-namespace Fe\ShrtBundle\DependencyInjection;
+namespace Fe\ShrtUrlBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class FeShrtExtension extends Extension
+class FeShrtUrlExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -24,11 +24,5 @@ class FeShrtExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
-
-        if (!isset($config['base_url'])) {
-            throw new \InvalidArgumentException('The option "fe_shrt.base_url" must be set.');
-        }
-
-        $container->setParameter('fe_shrt.base_url', $config['base_url']);
     }
 }

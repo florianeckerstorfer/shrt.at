@@ -63,3 +63,6 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+fe_shrt:
+    base_url: http://shrt.at.dev

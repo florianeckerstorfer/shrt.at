@@ -7,3 +7,5 @@
 /vendor/
 /bin/
 /composer.phar
+/.tags
+/.tags_sorted_by_file
