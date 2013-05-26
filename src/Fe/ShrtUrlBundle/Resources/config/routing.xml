@@ -4,6 +4,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
+    <route id="fe_shrt_url_redirect_redirect" pattern="/{code}">
+        <default key="_controller">FeShrtUrlBundle:Redirect:redirect</default>
+    </route>
+
     <route id="fe_shrt_url_api_1_short" pattern="/api/1/url/short">
         <default key="_controller">FeShrtUrlBundle:Api:short</default>
     </route>
