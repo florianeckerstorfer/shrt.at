@@ -34,8 +34,8 @@ class UrlShortener
      */
     public function __construct(LinkManager $linkManager, $baseUrl)
     {
-        $this->linkManager = $linkManager;
-        $this->baseUrl = $baseUrl;
+        $this->linkManager  = $linkManager;
+        $this->baseUrl      = $baseUrl;
     }
 
     /**
@@ -58,10 +58,6 @@ class UrlShortener
             $this->linkManager->updateLink($link);
         }
 
-        return sprintf(
-            '%s/%s',
-            $this->baseUrl,
-            $link->getCode()
-        );
+        return sprintf('%s/%s', $this->baseUrl, $link->getCode());
     }
 }

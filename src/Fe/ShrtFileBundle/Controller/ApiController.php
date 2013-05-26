@@ -22,19 +22,26 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class ApiController extends Controller
 {
+    /**
+     * Upload action.
+     *
+     * @param Request $request The request
+     *
+     * @return Response The response
+     */
     public function uploadAction(Request $request)
     {
-        $response = new Response();
-
+        // Only POST requests are allowed
         if (!$request->isMethod('POST')) {
+            $response = new Response();
             $response->setStatusCode(405);
 
             return $response;
         }
 
-        $media = $request->files->get('media');
-
-        $url = $this->get('fe_shrt_file.uploader')->upload($media);
+        // Upload the file
+        $url = $this->get('fe_shrt_file.uploader')->upload($request->files->get('media'));
+        // Create a short URL for the file
         $shortUrl = $this->get('fe_shrt_url.shortener')->shorten($url);
 
         return new JsonResponse(array('url' => $shortUrl));

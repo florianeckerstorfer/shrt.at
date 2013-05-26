@@ -33,8 +33,8 @@ class FileUploader
      */
     public function __construct(Filesystem $filesystem, $baseUrl)
     {
-        $this->filesystem = $filesystem;
-        $this->baseUrl = $baseUrl;
+        $this->filesystem   = $filesystem;
+        $this->baseUrl      = $baseUrl;
     }
 
     /**
@@ -46,6 +46,7 @@ class FileUploader
      */
     public function upload(UploadedFile $file)
     {
+        // Build the filename based on the year, month, a unique ID and the orignal filename.
         $filename = sprintf('%d/%d/%s-%s', date('Y'), date('m'), uniqid(), $file->getClientOriginalName());
 
         $adapter = $this->filesystem->getAdapter();
