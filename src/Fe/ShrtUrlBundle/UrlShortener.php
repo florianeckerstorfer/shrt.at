@@ -1,4 +1,8 @@
 <?php
+/**
+ * This file is part of shrt.at
+ * (c) 2013 Florian Eckerstorfer
+ */
 
 namespace Fe\ShrtUrlBundle;
 
@@ -6,6 +10,15 @@ use Fe\ShrtBundle\Entity\LinkManager;
 
 use Doctrine\ORM\NoResultException;
 
+/**
+ * UrlShortener
+ *
+ * @package    FeShrtUrlBundle
+ * @subpackage Controller
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2013 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
+ */
 class UrlShortener
 {
     /** @var LinkManager */
