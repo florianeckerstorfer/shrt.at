@@ -7,4 +7,9 @@
     <route id="fe_shrt_url_api_1_short" pattern="/api/1/url/short">
         <default key="_controller">FeShrtUrlBundle:Api:short</default>
     </route>
+
+    <route id="fe_shrt_url_api_1_long" pattern="/api/1/url/long">
+        <default key="_controller">FeShrtUrlBundle:Api:long</default>
+    </route>
+
 </routes>

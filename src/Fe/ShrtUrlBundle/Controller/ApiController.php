@@ -38,4 +38,28 @@ class ApiController extends Controller
             $link->getCode()
         ));
     }
+
+    /**
+     * Returns the long URL of the given code.
+     *
+     * @param Request $request The request
+     *
+     * @return Response The response
+     */
+    public function longAction(Request $request)
+    {
+        $linkManager    = $this->get('fe_shrt.link_manager');
+        $code           = $request->get('c');
+
+        try {
+            $link = $linkManager->findLinkByCode($code);
+
+            $response = new Response($link->getUrl());
+        } catch (NoResultException $e) {
+            $response = new Response('');
+            $response->setStatusCode(404);
+        }
+
+        return $response;
+    }
 }

@@ -36,6 +36,17 @@ class LinkManager
             ->getSingleResult();
     }
 
+    public function findLinkByCode($code)
+    {
+        return $this->objectManager->createQueryBuilder()
+            ->select('l')
+            ->from($this->className, 'l')
+            ->where('l.code = :code')
+            ->setParameter('code', $code)
+            ->getQuery()
+            ->getSingleResult();
+    }
+
     public function createLink($url = null, $code = null)
     {
         $className = $this->className;
