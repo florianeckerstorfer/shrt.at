@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="fe_shrt_file.amazon_s3.class">AmazonS3</parameter>
+        <parameter key="fe_shrt_file.uploader.class">Fe\ShrtFileBundle\FileUploader</parameter>
     </parameters>
 
     <services>
@@ -14,6 +15,11 @@
                 <argument key="key">%fe_shrt_file.amazon_s3.aws_key%</argument>
                 <argument key="secret">%fe_shrt_file.amazon_s3.aws_secret_key%</argument>
             </argument>
+        </service>
+
+        <service id="fe_shrt_file.uploader" class="%fe_shrt_file.uploader.class%">
+            <argument type="service" id="gaufrette.s3_filesystem" />
+            <argument>%fe_shrt_file.amazon_s3.base_url%</argument>
         </service>
     </services>
 
