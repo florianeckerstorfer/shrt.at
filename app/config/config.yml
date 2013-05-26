@@ -78,14 +78,11 @@ knp_gaufrette:
         s3:
             amazon_s3:
                 amazon_s3_id: fe_shrt_file.amazon_s3
-                bucket_name: 42.ly
+                bucket_name: %aws_s3_bucket_name%
                 create: false
                 options:
                     create: true
-                    # region: 'US Standard'
-                    # directory:
     filesystems:
         s3:
             adapter: s3
             alias: s3_filesystem
-
