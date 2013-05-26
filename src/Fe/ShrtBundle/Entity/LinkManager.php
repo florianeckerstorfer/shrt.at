@@ -1,10 +1,23 @@
 <?php
+/**
+ * This file is part of shrt.at
+ * (c) 2013 Florian Eckerstorfer
+ */
 
 namespace Fe\ShrtBundle\Entity;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
 
+/**
+ * LinkManager
+ *
+ * @package    FeShrtBundle
+ * @subpackage Entity
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2013 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
+ */
 class LinkManager
 {
     /** @var string */

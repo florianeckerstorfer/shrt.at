@@ -1,4 +1,8 @@
 <?php
+/**
+ * This file is part of shrt.at
+ * (c) 2013 Florian Eckerstorfer
+ */
 
 namespace Fe\ShrtUrlBundle\Controller;
 
@@ -7,6 +11,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * ApiController
+ *
+ * @package    FeShrtUrlBundle
+ * @subpackage Controller
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2013 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
+ */
 class ApiController extends Controller
 {
     /**

@@ -1,10 +1,22 @@
 <?php
+/**
+ * This file is part of shrt.at
+ * (c) 2013 Florian Eckerstorfer
+ */
 
 namespace Fe\ShrtBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Link
+ *
+ * @package    FeShrtBundle
+ * @subpackage Entity
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2013 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
+ *
  * @ORM\Entity
  * @ORM\Table(name="links")
  */

@@ -1,4 +1,8 @@
 <?php
+/**
+ * This file is part of shrt.at
+ * (c) 2013 Florian Eckerstorfer
+ */
 
 namespace Fe\ShrtUrlBundle\DependencyInjection;
 
@@ -8,9 +12,13 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * This is the class that loads and manages your bundle configuration
+ * FeShrtUrlExtension
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+ * @package    FeShrtUrlBundle
+ * @subpackage DependencyInjection
+ * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
+ * @copyright  2013 Florian Eckerstorfer
+ * @license    http://opensource.org/licenses/MIT The MIT License
  */
 class FeShrtUrlExtension extends Extension
 {
