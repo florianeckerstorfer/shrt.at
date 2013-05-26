@@ -14,7 +14,6 @@ use Doctrine\ORM\NoResultException;
  * UrlShortener
  *
  * @package    FeShrtUrlBundle
- * @subpackage Controller
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
@@ -27,12 +26,25 @@ class UrlShortener
     /** @var string */
     private $baseUrl;
 
+    /**
+     * Constructor.
+     *
+     * @param LinkManager $linkManager The link manager
+     * @param string      $baseUrl     The base URL
+     */
     public function __construct(LinkManager $linkManager, $baseUrl)
     {
         $this->linkManager = $linkManager;
         $this->baseUrl = $baseUrl;
     }
 
+    /**
+     * Shortens the given URL.
+     *
+     * @param string $url The long URL
+     *
+     * @return string The short URL
+     */
     public function shorten($url)
     {
         try {
