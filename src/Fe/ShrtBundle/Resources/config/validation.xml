@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Fe\ShrtBundle\Entity\Link">
+        <property name="url">
+            <constraint name="Url">
+                <option name="groups">
+                    <value>short</value>
+                </option>
+            </constraint>
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>short</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="code">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>long</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+
+</constraint-mapping>

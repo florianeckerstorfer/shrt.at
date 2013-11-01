@@ -6,12 +6,19 @@
 
     <parameters>
         <parameter key="fe_shrt_url.shortener.class">Fe\ShrtUrlBundle\UrlShortener</parameter>
+        <parameter key="fe_shrt_url.controller.api.class">Fe\ShrtUrlBundle\Controller\ApiController</parameter>
     </parameters>
 
     <services>
         <service id="fe_shrt_url.shortener" class="%fe_shrt_url.shortener.class%">
             <argument type="service" id="fe_shrt.link_manager"></argument>
             <argument>%fe_shrt.base_url%</argument>
+        </service>
+
+        <service id="fe_shrt_url.controller.api" class="%fe_shrt_url.controller.api.class%">
+            <argument type="service" id="fe_shrt_url.shortener" />
+            <argument type="service" id="fe_shrt.link_manager" />
+            <argument type="service" id="validator" />
         </service>
     </services>
 
