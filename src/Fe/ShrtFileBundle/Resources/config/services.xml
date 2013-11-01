@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="fe_shrt_file.amazon_s3.class">AmazonS3</parameter>
         <parameter key="fe_shrt_file.uploader.class">Fe\ShrtFileBundle\FileUploader</parameter>
+        <parameter key="fe_shrt_file.controller.api.class">Fe\ShrtFileBundle\Controller\ApiController</parameter>
     </parameters>
 
     <services>
@@ -20,6 +21,11 @@
         <service id="fe_shrt_file.uploader" class="%fe_shrt_file.uploader.class%">
             <argument type="service" id="gaufrette.s3_filesystem" />
             <argument>%fe_shrt_file.amazon_s3.base_url%</argument>
+        </service>
+
+        <service id="fe_shrt_file.controller.api" class="%fe_shrt_file.controller.api.class%">
+            <argument type="service" id="fe_shrt_file.uploader" />
+            <argument type="service" id="fe_shrt_url.shortener" />
         </service>
     </services>
 

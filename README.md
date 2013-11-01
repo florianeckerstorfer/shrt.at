@@ -17,6 +17,10 @@ Usage
 
 Coming soon.
 
+Upload a file using the API with cURL:
+
+    $ curl -F file=@/Users/Florian/photo.jpg http://shrt.at.dev/api/1/file/upload
+
 License
 -------
 

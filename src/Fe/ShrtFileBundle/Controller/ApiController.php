@@ -6,10 +6,13 @@
 
 namespace Fe\ShrtFileBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+
+use Fe\ShrtFileBundle\FileUploader;
+use Fe\ShrtUrlBundle\UrlShortener;
 
 /**
  * ApiController
@@ -19,31 +22,43 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
+ * @link       http://shrt.at Shrt.at
  */
-class ApiController extends Controller
+class ApiController
 {
+    /** @var FileUploader */
+    private $uploader;
+
+    /** @var UrlShortener */
+    private $shortener;
+
     /**
-     * Upload action.
+     * @param FileUploader $uploader
+     * @param UrlShortener $shortener
+     */
+    public function __construct(FileUploader $uploader, UrlShortener $shortener)
+    {
+        $this->uploader  = $uploader;
+        $this->shortener = $shortener;
+    }
+
+    /**
+     * @param Request $request
      *
-     * @param Request $request The request
-     *
-     * @return Response The response
+     * @return Response
      */
     public function uploadAction(Request $request)
     {
         // Only POST requests are allowed
-        if (!$request->isMethod('POST')) {
-            $response = new Response();
-            $response->setStatusCode(405);
-
-            return $response;
+        if (false === $request->isMethod('POST')) {
+            throw new MethodNotAllowedHttpException([ 'POST' ]);
         }
 
         // Upload the file
-        $url = $this->get('fe_shrt_file.uploader')->upload($request->files->get('media'));
+        $url = $this->uploader->upload($request->files->get('file'));
         // Create a short URL for the file
-        $shortUrl = $this->get('fe_shrt_url.shortener')->shorten($url);
+        $shortUrl = $this->shortener->shorten($url);
 
-        return new JsonResponse(array('url' => $shortUrl));
+        return new JsonResponse([ 'url' => $shortUrl ]);
     }
 }

@@ -18,6 +18,7 @@ use Doctrine\ORM\NoResultException;
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
+ * @link       http://shrt.at Shrt.at
  */
 class UrlShortener
 {
@@ -46,8 +47,12 @@ class UrlShortener
      *
      * @return string The short URL
      */
-    public function shorten(Link $link)
+    public function shorten($link)
     {
+        if (true === is_string($link)) {
+            $link = $this->linkManager->createLink($link);
+        }
+
         try {
             // Let's try if we find the URL in the database
             $link = $this->linkManager->findLinkByUrl($link->getUrl());
