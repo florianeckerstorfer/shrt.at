@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="fe_shrt_url.shortener.class">Fe\ShrtUrlBundle\UrlShortener</parameter>
         <parameter key="fe_shrt_url.controller.api.class">Fe\ShrtUrlBundle\Controller\ApiController</parameter>
+        <parameter key="fe_shrt_url.controller.redirect.class">Fe\ShrtUrlBundle\Controller\RedirectController</parameter>
     </parameters>
 
     <services>
@@ -19,6 +20,11 @@
             <argument type="service" id="fe_shrt_url.shortener" />
             <argument type="service" id="fe_shrt.link_manager" />
             <argument type="service" id="validator" />
+        </service>
+
+        <service id="fe_shrt_url.controller.redirect" class="%fe_shrt_url.controller.redirect.class%">
+            <argument type="service" id="fe_shrt.link_manager" />
+            <argument type="service" id="templating" />
         </service>
     </services>
 

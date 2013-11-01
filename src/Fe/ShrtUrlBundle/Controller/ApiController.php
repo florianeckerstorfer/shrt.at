@@ -25,7 +25,7 @@ use Fe\ShrtBundle\Entity\LinkManager;
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
- * @link       http://shrt.at
+ * @link       http://shrt.at Shrt.at
  */
 class ApiController
 {

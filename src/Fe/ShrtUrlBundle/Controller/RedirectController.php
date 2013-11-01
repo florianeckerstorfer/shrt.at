@@ -7,9 +7,12 @@
 namespace Fe\ShrtUrlBundle\Controller;
 
 use Doctrine\ORM\NoResultException;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Templating\EngineInterface as TemplatingEngineInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+use Fe\ShrtBundle\Entity\LinkManager;
 
 /**
  * RedirectController
@@ -19,9 +22,26 @@ use Symfony\Component\HttpFoundation\Response;
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
+ * @link       http://shrt.at Shrt.at
  */
-class RedirectController extends Controller
+class RedirectController
 {
+    /** @var LinkManager */
+    private $linkManager;
+
+    /** @var TemplatingEngineInterface */
+    private $templating;
+
+    /**
+     * @param LinkManager               $linkManager
+     * @param TemplatingEngineInterface $templating
+     */
+    public function __construct(LinkManager $linkManager, TemplatingEngineInterface $templating)
+    {
+        $this->linkManager = $linkManager;
+        $this->templating = $templating;
+    }
+
     /**
      * Redirects the user to URL associated with the given code.
      *
@@ -31,20 +51,16 @@ class RedirectController extends Controller
      */
     public function redirectAction($code)
     {
-        $linkManager = $this->get('fe_shrt.link_manager');
-
         try {
-            $link = $linkManager->findLinkByCode($code);
+            $link = $this->linkManager->findLinkByCode($code);
 
-            $response = new Response($this->renderView(
-                'FeShrtUrlBundle:Redirect:redirect.html.twig',
-                array('link' => $link)
-            ));
+            $response = new Response(
+                $this->templating->render('FeShrtUrlBundle:Redirect:redirect.html.twig',[ 'link' => $link ])
+            );
             $response->headers->set('Location', $link->getUrl());
             $response->setStatusCode(302);
         } catch (NoResultException $e) {
-            $response = new Response($this->renderView('FeShrtUrlBundle:Redirect:404.html.twig'));
-            $response->setStatusCode(404);
+            throw new NotFoundHttpException;
         }
 
         return $response;
