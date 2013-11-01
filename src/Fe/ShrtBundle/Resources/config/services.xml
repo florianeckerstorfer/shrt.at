@@ -7,13 +7,20 @@
     <parameters>
         <parameter key="fe_shrt.link.class">Fe\ShrtBundle\Entity\Link</parameter>
         <parameter key="fe_shrt.link_manager.class">Fe\ShrtBundle\Entity\LinkManager</parameter>
+        <parameter key="fe_shrt.controller.default.class">Fe\ShrtBundle\Controller\DefaultController</parameter>
     </parameters>
 
     <services>
+
         <service id="fe_shrt.link_manager" class="%fe_shrt.link_manager.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%fe_shrt.link.class%</argument>
         </service>
+
+        <service id="fe_shrt.controller.default" class="%fe_shrt.controller.default.class%">
+            <argument type="service" id="templating" />
+        </service>
+
     </services>
 
 </container>

@@ -6,7 +6,8 @@
 
 namespace Fe\ShrtBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Templating\EngineInterface as TemplatingEngineInterface;
 
 /**
  * DefaultController
@@ -16,14 +17,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  * @author     Florian Eckerstorfer <florian@eckerstorfer.co>
  * @copyright  2013 Florian Eckerstorfer
  * @license    http://opensource.org/licenses/MIT The MIT License
+ * @link       http://shrt.at Shrt.at
  */
-class DefaultController extends Controller
+class DefaultController
 {
+    /** @var TemplatingEngineInterface */
+    private $templating;
+
+    /**
+     * @param TemplatingEngineInterface $templating
+     */
+    public function __construct(TemplatingEngineInterface $templating)
+    {
+        $this->templating = $templating;
+    }
+
+    /**
+     * @return Response
+     */
     public function indexAction()
     {
-        return $this->render(
-            'FeShrtBundle:Default:index.html.twig',
-            array()
-        );
+        return new Response($this->templating->render('FeShrtBundle:Default:index.html.twig'));
     }
 }
