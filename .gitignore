@@ -9,3 +9,6 @@
 /composer.phar
 /.tags
 /.tags_sorted_by_file
+/web/css/
+/web/fonts/
+/web/js/
