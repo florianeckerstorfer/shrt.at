@@ -1,0 +1,9 @@
+{{ form_start(form, { 'style': 'basic', 'attr': { 'class': 'short-url-form' } }) }}
+<div class="row">
+    <div class="col-sm-9">
+        {{ form_widget(form.url, { 'attr': { 'class': 'input-lg' } }) }}
+    </div>
+    <div class="col-sm-3">{{ form_row(form.short, { 'attr': { 'class': 'btn-lg' } }) }}
+    </div>
+</div>
+{{ form_end(form) }}

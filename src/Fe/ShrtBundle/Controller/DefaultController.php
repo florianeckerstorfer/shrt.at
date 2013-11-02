@@ -6,8 +6,12 @@
 
 namespace Fe\ShrtBundle\Controller;
 
+use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\EngineInterface as TemplatingEngineInterface;
+
+use Fe\ShrtBundle\Entity\Link;
+use Fe\ShrtUrlBundle\Form\Type\ShortUrlType;
 
 /**
  * DefaultController
@@ -24,12 +28,16 @@ class DefaultController
     /** @var TemplatingEngineInterface */
     private $templating;
 
+    /** @var FormFactory */
+    private $formFactory;
+
     /**
      * @param TemplatingEngineInterface $templating
      */
-    public function __construct(TemplatingEngineInterface $templating)
+    public function __construct(TemplatingEngineInterface $templating, FormFactory $formFactory)
     {
-        $this->templating = $templating;
+        $this->templating  = $templating;
+        $this->formFactory = $formFactory;
     }
 
     /**
@@ -37,6 +45,11 @@ class DefaultController
      */
     public function indexAction()
     {
-        return new Response($this->templating->render('FeShrtBundle:Default:index.html.twig'));
+        $form = $this->formFactory->create(new ShortUrlType, new Link);
+
+        return new Response($this->templating->render(
+            'FeShrtBundle:Default:index.html.twig',
+            [ 'form' => $form->createView() ]
+        ));
     }
 }

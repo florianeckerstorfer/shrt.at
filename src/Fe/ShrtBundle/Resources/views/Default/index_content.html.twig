@@ -1,4 +1,8 @@
 <div class="jumbotron">
     <h1>Make URLs short</h1>
     <p>shrt.at makes long URLs short. You can use these URLs on Twitter, SMS, E-Mail, Blogs, Websites or you can print them.</p>
+
+    {% include 'FeShrtUrlBundle::short_url_form.html.twig' %}
 </div>
+
+{% include 'FeShrtUrlBundle::short_url_success.html.twig' %}

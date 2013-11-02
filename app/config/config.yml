@@ -17,6 +17,9 @@ framework:
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_proxies: ~
+    trusted_hosts:
+        - shrt.at.dev
+        - shrt.at
     session:         ~
     fragments:       ~
 
@@ -33,6 +36,7 @@ assetic:
             node_paths: [/usr/local/lib/node_modules]
             apply_to: "\.less$"
         compass:
+            ruby: /usr/local/bin/ruby
             apply_to: "\.scss$"
         cssrewrite: ~
     assets:
@@ -43,6 +47,10 @@ assetic:
                 - compass
                 - cssrewrite
             output: css/shrt.css
+        shrt_js:
+            inputs:
+                - %kernel.root_dir%/../src/Fe/ShrtBundle/Resources/public/js/short-url.js
+            output: js/shrt.js
 
 # Doctrine Configuration
 doctrine:

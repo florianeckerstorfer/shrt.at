@@ -19,6 +19,7 @@
 
         <service id="fe_shrt.controller.default" class="%fe_shrt.controller.default.class%">
             <argument type="service" id="templating" />
+            <argument type="service" id="form.factory" />
         </service>
 
     </services>
